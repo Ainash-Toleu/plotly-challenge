@@ -66,7 +66,7 @@ function DrawBubblechart(sampleId) {
             title: "Each Sample Displayed",
             showlegend: false,
             height: 600,
-            width: 600
+            width: 1000
         }
 
         Plotly.newPlot("bubble", bubbleArray, bubbleLayout);
