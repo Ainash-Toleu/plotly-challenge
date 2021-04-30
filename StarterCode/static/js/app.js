@@ -45,6 +45,7 @@ function DrawBubblechart(sampleId) {
         // console.log(resultArray);
         var result = resultArray[0];
         var otu_ids = result.otu_ids;
+        // console.log (otu_ids);
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
 
@@ -55,6 +56,8 @@ function DrawBubblechart(sampleId) {
             y: sample_values,
             mode: 'markers',
             marker: {
+                color: otu_ids,
+                colorscale: 'Earth',
                 size: sample_values
             },
             text: otu_labels
