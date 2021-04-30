@@ -49,8 +49,6 @@ function DrawBubblechart(sampleId) {
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
 
-        // yticks = otu_ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse();
-
         var bubbleData = {
             x: otu_ids,
             y: sample_values,
@@ -78,6 +76,12 @@ function DrawBubblechart(sampleId) {
 
 function ShowMetadata(sampleId) {
     console.log(`ShowMetadata(${sampleId})`);
+    d3.json("data/samples.json").then(data => {
+        console.log(data); 
+        var metadata = data.metadata;
+        var resultArray = metadata.filter (s => s.id == sampleId);
+        console.log(resultArray);
+    });
 
 }
 
