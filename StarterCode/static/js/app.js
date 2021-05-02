@@ -80,7 +80,9 @@ function ShowMetadata(sampleId) {
         console.log(data); 
         var metadata = data.metadata;
         var resultArray = metadata.filter (s => s.id == sampleId);
-        console.log(resultArray);
+        
+        for (const [key, value] of Object.entries(resultArray[0])) {
+            console.log(`${key}: ${value}`)};
     });
 
 }
