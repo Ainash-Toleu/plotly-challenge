@@ -95,18 +95,51 @@ function DrawGauge(sampleId) {
     console.log(`DrawGauge(${sampleId})`);
 
     d3.json("data/samples.json").then(data => {
-        var data = [
-            {
-                domain: { x: [0, 1], y: [0, 1] },
-                value: 270,
-                title: { text: "Speed" },
-                type: "indicator",
-                mode: "gauge+number"
-            }
-        ];
-        
-        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-        Plotly.newPlot('gauge', data, layout);
+        var traceA = {
+            type: "pie",
+            showlegend: false,
+            hole: 0.4,
+            rotation: 90,
+            values: [81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81/9, 81],
+            text: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+            direction: "clockwise",
+            textinfo: "text",
+            textposition: "inside",
+            marker: {
+                colors: ['rgb(165,0,38)','rgb(215,48,39)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,144)','rgb(224,243,248)','rgb(171,217,233)','rgb(116,173,209)','rgb(69,117,180)','white'],
+            },
+            labels: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+            hoverinfo: "label"
+          };
+          
+          var degrees = 115, radius = .6;
+          var radians = degrees * Math.PI / 180;
+          var x = -1 * radius * Math.cos(radians);
+          var y = radius * Math.sin(radians);
+          
+          var layout = {
+            // shapes:[{
+            //     type: 'line',
+            //     x0: 0,
+            //     y0: 0,
+            //     x1: x,
+            //     y1: 0.5,
+            //     line: {
+            //       color: 'black',
+            //       width: 8
+            //     }
+            //   }],
+            title: '<b>Belly Button Washing Frequency</b> <br> Scrubs per Week',
+            xaxis: {visible: false, range: [-1, 1]},
+            yaxis: {visible: false, range: [-1, 1]}
+          };
+          
+          var data = [traceA];
+          
+          Plotly.plot("gauge", data, layout, {staticPlot: true});
+
+
+
     });
 } 
 
