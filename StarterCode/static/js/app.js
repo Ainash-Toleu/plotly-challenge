@@ -91,11 +91,31 @@ function ShowMetadata(sampleId) {
 
 }
 
+function DrawGauge(sampleId) {
+    console.log(`DrawGauge(${sampleId})`);
+
+    d3.json("data/samples.json").then(data => {
+        var data = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: 270,
+                title: { text: "Speed" },
+                type: "indicator",
+                mode: "gauge+number"
+            }
+        ];
+        
+        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+        Plotly.newPlot('gauge', data, layout);
+    });
+} 
+
 function optionChanged(newSampleId) {
     console.log(`User selected ${newSampleId}`);
     DrawBargraph(newSampleId);
     DrawBubblechart(newSampleId);
     ShowMetadata(newSampleId);
+    DrawGauge(newSampleId);
 }
 
 function InitDashboard () {
@@ -119,6 +139,7 @@ function InitDashboard () {
         DrawBargraph(id);
         DrawBubblechart(id);
         ShowMetadata(id);
+        DrawGauge(id);
     });
 }
 
