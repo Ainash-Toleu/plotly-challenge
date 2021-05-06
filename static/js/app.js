@@ -1,5 +1,6 @@
-// Portions of the code are taken directly from the instructor's office hours tutorial.
+// Some portions of the code are taken directly from the instructor's office hours tutorial.
 
+// function to plot bar graph
 function DrawBargraph(sampleId) {
     console.log(`DrawBargraph(${sampleId})`);
 
@@ -33,6 +34,7 @@ function DrawBargraph(sampleId) {
     });
 }
 
+// function to plot bubble chart
 function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
 
@@ -59,16 +61,17 @@ function DrawBubblechart(sampleId) {
         var bubbleArray = [bubbleData];
 
         var bubbleLayout = {
-            title: "Each Sample Displayed",
             showlegend: false,
             height: 600,
-            width: 1000
+            width: 1000,
+            xaxis: {title: "OTU ID"}
         }
 
         Plotly.newPlot("bubble", bubbleArray, bubbleLayout);
     });
 }    
 
+// function to show metadata
 function ShowMetadata(sampleId) {
     console.log(`ShowMetadata(${sampleId})`);
     d3.json("data/samples.json").then(data => {
@@ -79,13 +82,12 @@ function ShowMetadata(sampleId) {
         result.html("");
         for (const [key, value] of Object.entries(resultArray[0])) {
             console.log(`${key}: ${value}`);
-            result.append("p").text(`${key}: ${value}`)};
-
-                    
+            result.append("p").text(`${key}: ${value}`)};               
     });
 
 }
 
+// function to draw gauge. Could not finish bonus part.
 function DrawGauge(sampleId) {
     console.log(`DrawGauge(${sampleId})`);
 
@@ -131,7 +133,7 @@ function DrawGauge(sampleId) {
           
           var data = [traceA];
           
-          Plotly.plot("gauge", data, layout, {staticPlot: true});
+          Plotly.plot("gauge", data, layout);
 
 
 
