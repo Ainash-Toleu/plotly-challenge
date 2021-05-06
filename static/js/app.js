@@ -4,10 +4,8 @@ function DrawBargraph(sampleId) {
     console.log(`DrawBargraph(${sampleId})`);
 
     d3.json("data/samples.json").then(data => {
-        // console.log(data); 
         var samples = data.samples;
         var resultArray = samples.filter (s => s.id == sampleId);
-        // console.log(resultArray);
         var result = resultArray[0];
         var otu_ids = result.otu_ids;
         var otu_labels = result.otu_labels;
@@ -39,13 +37,10 @@ function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
 
     d3.json("data/samples.json").then(data => {
-        // console.log(data); 
         var samples = data.samples;
         var resultArray = samples.filter (s => s.id == sampleId);
-        // console.log(resultArray);
         var result = resultArray[0];
         var otu_ids = result.otu_ids;
-        // console.log (otu_ids);
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
 
@@ -156,7 +151,6 @@ function InitDashboard () {
     // Populate the dropdown
     var selector = d3.select("#selDataset");
     d3.json("data/samples.json").then(function(data){
-        // console.log(data); 
 
         var sampleNames = data.names;
         
